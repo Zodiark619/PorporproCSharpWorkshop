@@ -1,0 +1,40 @@
+﻿@page "/exercise1_03"
+
+
+<h3>Exercise1_03</h3>
+
+<h4>String replace: @Name</h4>
+<br />
+<input placeholder="Word source" @bind="input1"/>
+<input placeholder="Word target" @bind="input2"/>
+<button @onclick="stringReplace">Change</button>
+
+
+
+@code {
+    private string name = "Hello, World!";
+
+    private string Name
+    {
+        get
+        {
+            return name;
+        }
+        set
+        {
+            name = value;
+        }
+    }
+
+    private string input1=string.Empty;
+    private string input2=string.Empty;
+
+    private void stringReplace()
+    {
+        if (!string.IsNullOrWhiteSpace(input1) && !string.IsNullOrWhiteSpace(input2))
+        {
+            Name=Name.Replace(input1, input2);
+        }
+       
+    }
+}

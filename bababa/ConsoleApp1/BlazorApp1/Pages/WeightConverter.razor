@@ -1,0 +1,38 @@
+﻿@page "/weightconverter"
+<PageTitle>Weight Converter KG to G</PageTitle>
+<h3>WeightConverter</h3>
+
+
+<label>KG</label>
+<input @bind-value="Kilo" @bind-value:event="oninput" />
+<span>=</span>
+<input @bind-value="Gram" @bind-value:event="oninput"/>
+<label >G</label>
+@code {
+    private double kilo = 1;
+    private double gram = 1000;
+
+
+    private double Kilo{ 
+        get
+        {
+            return kilo;
+        }
+        set
+        {
+            kilo = value;
+            gram = kilo * 1000;
+        }
+    }
+    private double Gram{ 
+        get
+        {
+            return gram;
+        }
+        set
+        {
+            kilo = gram / 1000;
+            gram = value;
+        }
+    }
+    }

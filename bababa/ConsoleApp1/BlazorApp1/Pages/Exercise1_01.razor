@@ -1,0 +1,27 @@
+﻿@page "/exercise1_02"
+
+<h3>Exercise1_02</h3>
+
+<h4>Hi! I’m your first Program. What is your name?</h4>
+<br />
+<input placeholder="Insert name" @bind="name"/>
+<button @onclick="addName">Add</button>
+<br />
+<hr />
+@if (!string.IsNullOrWhiteSpace(name))
+{
+    <h4>Hi @name, it is very nice to meet you. We have a really fun journey ahead.</h4>
+
+}
+else
+{
+    <h4>Must not be null or whitespace, try input something</h4>
+}
+@code {
+    private string name=string.Empty;
+
+    private void addName()
+    {
+        name = name;
+    }
+}
