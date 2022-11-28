@@ -1,0 +1,23 @@
+﻿@page "/exercise1_05"
+
+<h3>Exercise1_05</h3>
+<br />
+<p>Are the local and utc dates equal? @answer1</p>
+<br>
+<p>If the dates are equal, does it mean that there's no TimeSpan interval between them? @answer2</p>
+<br />
+<p>Difference between the @localTime.Kind.ToString() Time and @utcTime.Kind.ToString()
+    Time: @interval.Hours:@interval.Minutes hours</p>
+    <br />
+    <p>If we jump two days to the future on @a1 we'll be on 
+        @a2
+    </p>
+@code {
+    private bool answer1 = DateTime.Now.Date == DateTime.UtcNow.Date;
+    private bool answer2=DateTime.Now.Date - DateTime.UtcNow.Date == TimeSpan.Zero;
+    private static DateTime localTime = DateTime.Now;
+    private static DateTime utcTime = DateTime.UtcNow;
+    private TimeSpan interval = (localTime - utcTime);
+    private string a1 = new DateTime(2020, 12, 31).ToShortDateString();
+    private string a2 = new DateTime(2020, 12, 31).AddDays(2).ToShortDateString();
+}

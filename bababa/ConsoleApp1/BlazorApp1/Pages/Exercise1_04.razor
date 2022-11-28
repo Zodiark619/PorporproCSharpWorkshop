@@ -1,0 +1,67 @@
+﻿@page "/exercise1_04"
+
+
+<h3>Exercise1_04</h3>
+<label>Input 1 : </label>
+<input @bind="input1" />
+<br />
+<br />
+<label>Input 2 : </label>
+<input @bind="input2" />
+<br />
+<br />
+<button @onclick="Addition">+</button>
+<button @onclick="Subtraction">-</button>
+<button @onclick="Multiplication">*</button>
+<button @onclick="Division">/</button>
+<hr />
+
+
+<label>Answer : @message</label>
+    
+
+
+@code {
+    private static double answer;
+    private static double input2;
+    private static double input1;
+    private string message;
+    private static char operato;
+    private void Addition()
+    {
+        answer = input1 + input2;
+        operato= '+';
+        message = $"{input1} {operato} {input2} = {answer}";
+    }
+    private void Subtraction()
+    {
+        answer = input1 - input2;
+        operato= '-';
+        message = $"{input1} {operato} {input2} = {answer}";
+
+    }
+    private void Multiplication()
+    {
+        answer = input1 * input2;
+        operato= '*';
+        message = $"{input1} {operato} {input2} = {answer}";
+
+    }
+    private void Division()
+    {
+
+        if (input2 == 0)
+        {
+            message= "input 2 must not be zero";
+        }
+        else
+        {
+            answer = input1 / input2;
+            operato = '/';
+
+            message = $"{input1} {operato} {input2} = {answer}";
+
+        }
+    }
+
+}

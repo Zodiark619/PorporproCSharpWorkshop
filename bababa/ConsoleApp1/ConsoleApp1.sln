@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1", "BlazorApp1\BlazorApp1.csproj", "{9DCBD371-B59F-47C2-AE48-A246A8E40CEA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PlaceApi", "TouristSpot\PlaceApi\PlaceApi.csproj", "{A1056A5C-57CA-4949-8606-CD7764AD73E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{9DCBD371-B59F-47C2-AE48-A246A8E40CEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DCBD371-B59F-47C2-AE48-A246A8E40CEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DCBD371-B59F-47C2-AE48-A246A8E40CEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1056A5C-57CA-4949-8606-CD7764AD73E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1056A5C-57CA-4949-8606-CD7764AD73E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1056A5C-57CA-4949-8606-CD7764AD73E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1056A5C-57CA-4949-8606-CD7764AD73E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
