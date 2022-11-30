@@ -1,0 +1,92 @@
+﻿@page "/exercise1_07"
+
+
+<h3>Exercise1_07</h3>
+<br />
+<br>
+<label>Struct</label>
+<input @bind="goldenRetriever1"/>
+<input @bind="goldenRetriever2"/>
+<button @onclick="GoldenRetrieverEquality">Golden Retriever</button>
+<br />
+<h4>@goldenComparison</h4>
+<hr />
+<label>Class</label>
+<input @bind="borderCollie1"/>
+<input @bind="borderCollie2"/>
+<button @onclick="BorderCollieEquality">Border Collie</button>
+<br />
+<h4>@borderComparison</h4>
+<hr />
+<label>Class with Equals Override</label>
+<input @bind="bernese1"/>
+<input @bind="bernese2"/>
+<button @onclick="BerneseEquality">Bernese</button>
+<br />
+<h4>@berneseComparison</h4>
+
+
+@code {
+    private string goldenRetriever1;
+    private string goldenRetriever2;
+    private string goldenComparison;
+    private void GoldenRetrieverEquality()
+    { GoldenRetriever aGolden = new GoldenRetriever() { Name = goldenRetriever1 };
+ GoldenRetriever anotherGolden = new GoldenRetriever() { Name = goldenRetriever2 };
+ goldenComparison = aGolden.Equals(anotherGolden) ? "These Golden Retrievers have the same name." : "These Goldens have different names.";
+
+        
+    }
+
+    private string borderCollie1;
+    private string borderCollie2;
+    private string borderComparison;
+    private void BorderCollieEquality()
+    { var aBorder = new BorderCollie() { Name = borderCollie1 };
+ var anotherBorder = new BorderCollie() { Name = borderCollie2 };
+  borderComparison = aBorder.Equals(anotherBorder) ? "These Border Collies have the same name." : "These Border Collies have different names.";
+
+        
+    }
+
+    private string bernese1;
+    private string bernese2;
+    private string berneseComparison;
+    private void BerneseEquality()
+    { var aBernese = new Bernese() { Name = bernese1 };
+ var anotherBernese = new Bernese() { Name = bernese2 };
+  berneseComparison = aBernese.Equals(anotherBernese) ? "These Bernese dogs have the same name." : "These Bernese dogs have different names.";
+       
+    }
+
+
+struct  GoldenRetriever
+{
+    public string? Name { get; set; }
+}
+
+class BorderCollie
+{
+    public string Name { get; set; }
+}
+
+class Bernese
+{
+    public string Name { get; set; }
+
+    public override bool Equals(object obj)
+    {
+        if (obj is Bernese borderCollie && obj != null)
+        {
+            return this.Name == borderCollie.Name;
+        }
+
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return base.GetHashCode();
+    }
+}
+}

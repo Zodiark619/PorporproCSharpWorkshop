@@ -2,6 +2,40 @@
 
 <h3>Exercise1_06</h3>
 
-@code {
+<br />
+<br />
+<input @bind="password" align="center"/>
+<br />
+<br />
+<button @onclick="PasswordChecker" align="center">Password Checker</button>
+<br />
+<br />
+<h4>@message</h4>
 
+@code {
+    private string password;
+    private string message;
+    private void PasswordChecker()
+    {
+        if (password.Length < 6)
+{
+	message="It must have a length of at least 6 characters and also contain a number.";
+}
+else
+{
+	
+	if (password.Length < 6)
+	{
+		message="The password must have at least 6 characters.";
+	}
+	else if (!password.Any(c => char.IsDigit(c)))
+	{
+		message="The password must contain at least one number.";
+	}
+	else
+	{
+		message="Password is eligible.";
+	}
+}
+    }
 }
