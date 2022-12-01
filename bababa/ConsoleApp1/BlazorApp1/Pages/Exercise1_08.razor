@@ -1,0 +1,63 @@
+﻿@page "/exercise1_08"
+
+<h3>Exercise1_08</h3>
+<br />
+<p>Welcome to the Burger Joint.</p>
+<ul style="list-style:none;">
+    <li>
+        1) Burgers and Fries - 5 USD
+
+    </li>
+    <li>2) Cheeseburger -7 USD</li>
+    <li>3) Double-cheeseburger - 9 USD</li>
+    <li>4) Coke - 2 USD</li>
+    
+</ul>
+<p>Note that every burger option comes with fries and ketchup!</p>
+<p>Please type one of the following options to order:</p>
+<input placeholder="1" type="number" @bind="input"/>
+<button @onclick="SwitchMenu">Enter</button>
+<h4>@message</h4>
+@code {
+    private int input;
+    private string message;
+    private void SwitchMenu()
+    {
+
+        switch (input)
+        {
+            case 1:
+                {
+                    message = "Alright, some burgers on the go. Please pay the cashier.";
+                    break;
+                }
+            case 2:
+                {
+                    message = "Thank you for ordering cheeseburgers. Please pay the cashier.";
+                    break;
+                }
+            case 3:
+                {
+                    message = "Thank you for ordering double cheeseburgers, hope you enjoy them. Please pay the cashier!";
+                    break;
+                }
+            case 4:
+                {
+                    message = "Thank you for ordering Coke. Please pay the cashier.";
+                    break;
+                }
+
+            default:
+                {
+                    message = "Sorry, you chose an invalid option.";
+                    break;
+                }
+
+        }
+        if (string.IsNullOrWhiteSpace(message))
+        {
+            message = "Pick an options from above";
+        }
+        
+    }
+}
