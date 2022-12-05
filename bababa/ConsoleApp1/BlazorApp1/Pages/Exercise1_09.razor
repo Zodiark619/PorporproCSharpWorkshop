@@ -1,5 +1,53 @@
-﻿<h3>Exercise1_09</h3>
+﻿@page "/exercise1_09"
+
+
+<h3>Exercise1_09</h3>
+
+
+<br />
+<br>
+<h4>Prime number</h4>
+<br />
+<h5>Answer : @input @message</h5>
+<br />
+<input type="number" @bind="input" />
+<button @onclick="PrimeNumber">Prime!</button>
 
 @code {
+    private int input;
+    private string message;
+
+
+    private void PrimeNumber()
+    {
+        if (input < 1)
+        {
+            message = "Please input a non-negative and non-zero number";
+        }
+        else
+        {
+            if (input == 1)
+            {
+                message = "is not a prime number";
+
+            }
+            else
+            {
+                int counter = 2;
+                message = "is a prime number";
+
+                while (counter <= Math.Sqrt(input))
+                {
+                    if (input % counter == 0)
+                    {
+                        message = "is not a prime number";
+                        break;
+                    }
+                    counter++;
+                }
+            }
+        }
+    }
+
 
 }

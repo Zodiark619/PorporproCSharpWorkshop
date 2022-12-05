@@ -5,8 +5,14 @@ using ConsoleApp1.Data;
 using ConsoleApp1.Models;
 using Dapper;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
-DataContextDapper dapper=new DataContextDapper();
+IConfiguration config=new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build();
+
+DataContextDapper dapper=new DataContextDapper(config);
+DataContextEF entityFramework=new DataContextEF(config);
 DateTime rightNow=dapper.LoadDataSingle<DateTime>("select getdate()");
 Computer myComputer=new(){
     Motherboard="Z690",
@@ -16,6 +22,8 @@ Computer myComputer=new(){
     Price=943.87m,
     VideoCard="RTX 2060"
 };
+entityFramework.Add(myComputer);
+entityFramework.SaveChanges();
 string sql=@"insert into tutorialappschema.computer (
     Motherboard,
     HasWifi,
@@ -36,6 +44,7 @@ string sql=@"insert into tutorialappschema.computer (
       System.Console.WriteLine( result);
 
       string sqlSelect=@"select
+      computer.ComputerId,
        computer.Motherboard,
     computer.HasWifi,
     computer.HasLTE,
@@ -44,10 +53,11 @@ string sql=@"insert into tutorialappschema.computer (
     computer.VideoCard
      from tutorialappschema.computer";
 IEnumerable<Computer> computers=dapper.LoadData<Computer>(sqlSelect);
-      System.Console.WriteLine("'Motherboard','HasWifi','HasLTE','ReleaseDate','Price','VideoCard'");
+      System.Console.WriteLine("'ComputerId','Motherboard','HasWifi','HasLTE','ReleaseDate','Price','VideoCard'");
 
 foreach(Computer singleComputer in computers){
-    System.Console.WriteLine("'" +singleComputer.Motherboard 
+    System.Console.WriteLine("'"  +singleComputer.ComputerId
+        + "','"+singleComputer.Motherboard 
         + "','"+singleComputer.HasWifi
         + "','"+singleComputer.HasLTE
         + "','"+singleComputer.ReleaseDate
@@ -56,3 +66,21 @@ foreach(Computer singleComputer in computers){
       +  "'");
 }
 
+
+
+
+IEnumerable<Computer>? computersEF=entityFramework.Computer?.ToList<Computer>();
+if(computersEF!=null){
+
+System.Console.WriteLine();
+
+foreach(Computer juju in computersEF){
+    System.Console.WriteLine("'" +juju.ComputerId
+         + "','"+juju.Motherboard 
+        + "','"+juju.HasWifi
+        + "','"+juju.HasLTE
+        + "','"+juju.ReleaseDate
+        + "','"+juju.Price
+        + "','"+juju.VideoCard
+      +  "'");
+}}

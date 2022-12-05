@@ -1,0 +1,23 @@
+﻿@page "/gameslibrarylist"
+@inject IViewGamesLibraryByNameUseCase ViewGamesLibraryByNameUseCase
+<h3>GamesLibraryList</h3>
+
+<br />
+<ul style="list-style:none;">
+@foreach(var game in _games)
+{
+    <div class="border border-primary">
+    <li>@game.Name</li>
+    <li>@game.Price</li>
+    <li>@game.Genre</li>
+        </div>
+    }
+</ul>
+@code {
+    private List<GamesLibrary> _games=new List<GamesLibrary>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _games= (await ViewGamesLibraryByNameUseCase.ExecuteAsync("")).ToList();
+    }
+}
