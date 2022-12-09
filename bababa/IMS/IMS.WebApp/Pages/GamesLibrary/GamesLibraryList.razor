@@ -3,21 +3,20 @@
 <h3>GamesLibraryList</h3>
 
 <br />
-<ul style="list-style:none;">
-@foreach(var game in _games)
-{
-    <div class="border border-primary">
-    <li>@game.Name</li>
-    <li>@game.Price</li>
-    <li>@game.Genre</li>
-        </div>
-    }
-</ul>
+<SearchGamesLibraryComponent OnSearchGamesLibrary="OnGamesLibrarySearch"></SearchGamesLibraryComponent>
+<br />
+Output : @searchTerm
 @code {
     private List<GamesLibrary> _games=new List<GamesLibrary>();
 
     protected override async Task OnInitializedAsync()
     {
         _games= (await ViewGamesLibraryByNameUseCase.ExecuteAsync("")).ToList();
+    }
+
+    private string searchTerm=string.Empty;
+    private void OnGamesLibrarySearch(string searchTerm)
+    {
+        this.searchTerm = searchTerm;
     }
 }

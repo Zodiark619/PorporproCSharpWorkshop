@@ -1,0 +1,24 @@
+﻿
+
+<div class="input-group">
+    <input type="text"
+        class="form-control"
+        placeholder="Type game title here"
+        @bind-value="gameTitleToSearch" />
+        <button type="button"
+            class="input-group-text"
+            @onclick="OnSearch">Search!</button>
+</div>
+<br />
+
+
+
+@code {
+    private string gameTitleToSearch = string.Empty;
+    [Parameter]
+    public EventCallback<string> OnSearchGamesLibrary{ get; set; }
+    private void OnSearch()
+    {
+        OnSearchGamesLibrary.InvokeAsync(gameTitleToSearch);
+    }
+}
